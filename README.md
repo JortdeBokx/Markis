@@ -1,21 +1,25 @@
 # Markis
 The ultimate File Management System for (almost) all Tu/e courses
 
-Markis is written in python using the Flask Microframework
+Markis is written in python using the Flask Micro-framework
 
 ## Getting started
 follow these instructions if you want to setup a copy of the project on your local machine for development and testing purposes.
 
-### Prerequisits 
+### Prerequisites 
 In order to setup the development environment you need to install the following:
-firstle install [Python 3.6](https://www.python.org/downloads/release/python-360/), together with Pip.
-then, in the root directory run `pip install -r requirements.txt` to install all dependancies. 
+firstly install [Python 3.6](https://www.python.org/downloads/release/python-360/), together with Pip.
+then, in the root directory run `pip install -r requirements.txt` to install all dependencies. 
 
 ### Setup
 After having installed the required packages you can run `python app.py` to run the server.
 
-Configure `/instance/config.py` as you please. **Don't submit your version of this file to the repository**. We have added
-a default development database in `config.py` for you to use. Should you wish to use your own development database overwrite the url in `/instance/config.py`
+Configure `/instance/config.py` as you please. **Your version of this file should not be in the repository**.
+You need to define the following variables in `/instance/config.py` in order to successfully run a development instance:
+* Add a `SECRET_KEY` variable
+* Add information for a development database (email the project owners if you wish to use a hosted DB server) `SQLALCHEMY_DATABASE_URI`.
+* Add the following: `DEBUG = True` & `SQLALCHEMY_ECHO = True` (to overwrite main configuration)
+* Add your own url, username and password for a crowd REST server, you can ask the project owner for a hosted crowd server
 
 ###folder structure
 The files and folders are divided as follows:
@@ -29,15 +33,15 @@ The files and folders are divided as follows:
 | /Markis/            |The package of our app   |
 | /Markis/__init__.py |This file initializes your application and brings together all of the various components   |
 | /Markis/views.py    |This is where the routes are defined   |
+| /Markis/util        |This folder contains utility files|
 | /Markis/models.py   |This is where models are defined   |
 | /Markis/forms.py    |This is where forms are defined   |
 | /Markis/static/     |This folder contains static files such as stylesheets and images   |
 | /Markis/templates/  |This folder contains Jinja2 templates   |
+| /Markis/static/filestore | This folder stores all the files uploaded to Markis. **These should not be added to version control**|
 
 More folders may be added as needed.
 
-## Running the tests
-TODO
 ## Built With
 * [Flask](http://flask.pocoo.org/)
 * [Bootstrap 4.0](https://v4-alpha.getbootstrap.com/)

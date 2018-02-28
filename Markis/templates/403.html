@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block body %}
+<img src="{{url_for('static', filename='img/sad_smiley.png')}}" alt="403 - Forbidden" class="sad-smiley"/>
+<h3 class="error_title">403 - Forbidden</h3>
+<div class="error-message">You do not have access to this page. Please log in using an account with privileges, or ask an administrator.</div>
+{% endblock %}

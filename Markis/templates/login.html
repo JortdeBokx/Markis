@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'includes/_head.html' %}
+<body class="base">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+      <span class="navbar-brand">Markis</span>
+
+    </nav>
+<div class="starter-template login-container">
+  <h1>Log in to Markis</h1>
+    {% include 'includes/_messages.html' %}
+    {% from 'includes/_formhelper.html' import render_field %}
+    <form method="POST" action="">
+    	<div class="form-group">
+    		{{render_field(form.username, class_="form-control")}}
+    	</div>
+    	<div class="form-group">
+    		{{render_field(form.password, class_="form-control")}}
+    	</div>
+    	<div class="form-group">
+                <label class="custom-control custom-checkbox">
+                {{render_field(form.keepLoggedIn, class_="custom-control-input")}}
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Keep me logged in</span>
+            </label>
+    	</div>
+      <a href="/register" class="btn btn-primary-red anchor">Sign Up</a>
+    	<button type="submit" value="Log in" class="btn btn-primary-red">Log in</button>
+      <hr />
+      <a href="/">Forgot Password?</a>
+    </form>
+  </div>
+{% include 'includes/_footer.html' %}
+{% include 'includes/_scripts.html' %}
+</body>
+</html>

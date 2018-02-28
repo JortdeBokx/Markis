@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block body %}
+<img src="{{url_for('static', filename='img/teapot.png')}}" alt="418 - I'm A Teapot" class="sad-smiley"/>
+<h3 class="error_title">418 - I'm a Teapot</h3>
+<div class="error-message">The requested entity body is short and stout. <br />
+Tip me over and pour me out.</div>
+<div id="google"></div>
+{% endblock %}

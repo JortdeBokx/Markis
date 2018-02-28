@@ -1,0 +1,11 @@
+<div class="d-inline-block">
+	<ol class="breadcrumb">
+		{% for key, value in (request.path | breadcrumb).items() %}
+			{% if loop.last  %}
+				<li class="breadcrumb-item">{{key}}</a></li>
+			{% else %}
+				<li class="breadcrumb-item"><a href="{{value}}">{{key}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ol>
+</div>

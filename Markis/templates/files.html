@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="home-information file-information">
+  <div class="title">
+    <h2>{{ subjectDataSet.subject_id }} - {{ subjectDataSet.subject_name }} </h2>
+ </div>
+ {% include 'includes/_breadcrumb.html' %}
+ {% include 'includes/_searchbar.html' %}
+</div>
+
+<div class="content contentscroll lower">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+				<th class="sortTable" id="0">Votes<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i> </th>
+        <th class="sortTable" id="1">Name<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th class="sortTable" id="2">Uploaded on<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th class="sortTable" id="3">Size<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th class="sortTable" id="4">Uploaded By<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th>Favorite</th>
+        <th>Download</th>
+          {% if current_user.isAdmin %}
+          <th>Remove</th>
+          {% endif %}
+      </tr>
+    </thead>
+  <tbody>
+        {% if folders == [] and files == [] %}
+            <tr><td colspan="{% if current_user.isAdmin %}8{% else %}7{% endif %}" class="table-warning" style="text-align: center;">This directory is empty</td></tr>
+  {% else %}
+      {% for folder in folders %}
+      <tr onclick="location.href = '{{ request.path}}/{{ folder.name }}';">
+				<td></td>
+				<td>
+            {% if folder.hasContent %}
+            <i class="material-icons" id="icon">folder</i>
+            {% else %}
+            <i class="material-icons" id="icon">folder_open</i>
+            {% endif %}
+            {{ folder.name }}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+          {% if current_user.isAdmin %}
+          <td></td>
+          {% endif %}
+			</tr>
+    {% endfor %}
+  {% for file in files %}
+      <tr data-file-id = {{ file.file_id }}>
+				<td class="row-votes"><div class="votes"><a class="vote-up {% if file.user_vote == 1 %} chosen {% endif %}" title="This file is useful"><i class="material-icons" style="font-size:30px;">keyboard_arrow_up</i></a> <span class="file-votes">{{ file.votes }} </span> <a class="vote-down {% if file.user_vote == -1 %} chosen {% endif %}" title="This file is not useful"><i class="material-icons" style="font-size:30px;">keyboard_arrow_down</i></a></div></td>
+        <td class = "preview_file" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}" data-file-type = "{{ file.type }}"><i id="icon" class="fa_icon fas fa-{{file.type | file_icon }}"></i> {{ file.name }}</td>
+         <td class = "preview_file date" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}" data-file-type = "{{ file.type }}">{{ file.upload_date }}</td>
+         <td class = "preview_file" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}" data-file-type = "{{ file.type }}">{{ file.size }}</td>
+       <td class = "preview_file" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}" data-file-type = "{{ file.type }}">{{ file.uploader_displayname }}</td>
+       <td class="buttons"><div class="fileIcons"><a title="Favorite" class="favorites-button" id="favorites-button"><i id = "icon" class="material-icons" style="font-size:25px; color:#850028;">{% if file.user_favorite == 1 %} favorite {% else %}favorite_border{% endif %}</i></a></div></td>
+       <td class="buttons"><div class="fileIcons"><a href = "{{ file.downloadpath }}"  download><i id = "icon" class="material-icons download_button" style="font-size:30px; color:#0460bd;">file_download</i></a></div></td>
+      {% if current_user.isAdmin %}
+          <td><div class="fileIcons"><a href="#" class="delete-button" id="delete-button"><i class="material-icons" style="font-size:26px;">delete</i></a></div></td>
+          {% endif %}
+      </tr>
+    {% endfor %}
+
+  {% endif %}
+  </tbody>
+  </table>
+</div>
+<hr />
+{% endblock %}

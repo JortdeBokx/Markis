@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="home-information">
+  <div class="top-bar-left">
+    <h2>Favorites:</h2>
+ </div>
+ <div class="search-bar">
+   <form class="form-inline my-2 my-lg-0" onsubmit="return false">
+     <input id="search-files" class="form-control mr-sm-2 clearable" type="text" placeholder="Search files/folders">
+     <button class="btn btn-primary-search my-2 my-sm-0 search-button" type="button">Search</button>
+   </form>
+ </div>
+</div>
+<div class="content contentscroll">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="sortTable" id="0">Name<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th class="sortTable" id="1">Last modified<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th class="sortTable" id="2">Size<i id="arrow" class="material-icons down">arrow_drop_down</i><i id="arrow" class="material-icons up">arrow_drop_up</i></th>
+        <th>Download</th>
+        <th>Remove<th>
+      </tr>
+    </thead>
+  {% if favorites == [] %}
+            <tr><td colspan="7" class="table-warning" style="text-align: center;">You have no favorites</td></tr>
+  {% else %}
+      {% for file in favorites %}
+      <tr data-file-id = {{ file.file_id }}>
+				<td class = "preview_file" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}"><i id="icon" class="fa_icon fas fa-{{file.type | file_icon }}"></i> {{ file.name }}</td>
+         <td class = "preview_file" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}">{{ file.upload_date }}</td>
+         <td class = "preview_file" href = "{{ file.downloadpath }}" data-file-name = "{{ file.name }}">{{ file.size }}</td>
+          <td><div class="fileIcons"><a href = "{{ file.downloadpath }}"  download><i class="material-icons download_button" style="font-size:30px; color:#0460bd;">file_download</i></a></div></td>
+          <td><button type="button" class="close close-red remove-favorite" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </table>
+</div>
+<hr />
+{% endblock %}

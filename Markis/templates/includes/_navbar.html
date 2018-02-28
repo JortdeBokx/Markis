@@ -1,0 +1,44 @@
+ <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">Markis</a>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item {% if request.path == "/" %}active{% endif %}">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <div class="nav-item-border"></div>
+          <li class="nav-item {% if request.path == "/favorites" %}active{% endif %}">
+            <a class="nav-link" href="/favorites">Favorites</a>
+          </li>
+          <div class="nav-item-border"></div>
+          <li class="nav-item">
+            <a class="nav-link upload-file" id="file-upload" href="#" >Upload</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+         {% if current_user.is_authenticated%}
+            <!--
+             {% if current_user.isAdmin %}
+          <li class="nav-item {% if request.path == "/admin" %}active{% endif %}">
+            <a class="nav-link" href="/admin" >Manage Server</a>
+          </li>
+               <div class="nav-item-border"></div>
+
+          {% endif %}
+             -->
+				 <li class="nav-item dropdown">
+					 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						 Welcome, {{ current_user.displayname }}!
+					 </a>
+					 <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdownMenuLink">
+						 <a class="dropdown-item" target="_blank" href="/profile">Profile</a>
+						 <a class="dropdown-item" href="/logout">Log Out</a>
+					 </div>
+				 </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>

@@ -1,0 +1,31 @@
+ <div class="upload-container">
+    <h1>Upload File</h1>
+		<div class="alert alert-danger alert-dismissible fade show hidden" role="alert">
+		  <button type="button" class="close close-red" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+  		<p id="alert-text"></p>
+		</div>
+    {% from 'includes/_formhelper.html' import render_field %}
+
+    <form method="POST" action="/form/getuploadform" id="uploadForm">
+    	<div class="form-group">
+    		{{render_field(form.subject, class_="form-control")}}
+    	</div>
+    	<div class="form-group">
+            {{render_field(form.filetype, class_="form-control")}}
+        </div>
+        <div class="form-group year">
+            {{render_field(form.opt1, class_="form-control hide")}}
+        </div>
+        <div class="form-group type">
+            {{render_field(form.opt2, class_="form-control hide")}}
+        </div>
+        <div id="uploadDropzone" class="form-group dropzone hide">
+            <div class="fallback">
+                <input class="box__file" type="file" name="files" id="file" style="display:none"/>
+                <div class="droparea">Drag files here or click to upload</div>
+            </div>
+        </div>
+    </form>
+	</div>

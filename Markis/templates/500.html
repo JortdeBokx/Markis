@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block body %}
+<img src="{{url_for('static', filename='img/sad_smiley.png')}}" alt="500 - Internal Server Error" class="sad-smiley"/>
+<h3 class="error_title">500 - Internal Server Error</h3>
+<div class="error-message">An error occured while fulfilling your request. Please try again later, or contact an administrator.</div>
+<div id="google-teapot"></div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+flask
+passlib
+flask-wtf
+flask-mysqldb
+Flask-SQLAlchemy
+Flask-Security
+Flask-Login
+Flask-Principal
+requests

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="sad-smiley">
+<img class="rounded mx-auto d-block" src="{{url_for('static', filename='img/sad_smiley.png')}}" alt="404 - Page not found"/>
+</div>
+<br />
+	<h3 class="error_title">404 - Page not found</h3>
+{% if reason == "nosubject" %}
+	<div class="error-message">This subject could not be found. Make sure your link points to a valid subject code.</div>
+{% elif reason == "nopath" %}
+	<div class="error-message">This folder could not be found. It might have been removed or you link is incorrect.</div>
+{% elif reason == "Nope" %}
+	<div class="error-message">You have attempted to reach a url that is very wrong, so we just sent you here to calm down and reconsider your actions</div>
+{% endif %}
+{% endblock %}

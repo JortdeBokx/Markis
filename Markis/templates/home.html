@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+ <div class="home-information">
+   <div class="top-bar-left my-2 my-lg-0">
+     <span class="faculties">Faculties:</span>
+     <select class="custom-select" id="multivalued" multiple="multiple">
+      {% for faculty in faculties %}
+      <option value="{{faculty.faculty_id}}">{{faculty.faculty_name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="search-bar">
+    <form class="form-inline my-2 my-lg-0" onsubmit="return false">
+      <input id="search-subject" class="form-control mr-sm-2 clearable" type="text" placeholder="Search subject (name/code)" />
+      <button class="btn btn-primary-search my-2 my-sm-0 search-button" type="button">Search</button>
+    </form>
+  </div>
+ </div>
+ <div class="content lower">
+   <hr />
+   <div class="card-columns">
+     {% for subject in subjects %}
+     <a href="/subject/{{subject.subject_id}}" alt="{{subject.subject_name}}">
+      <div class="card">
+         <div class="card-block">
+           <h4 class="card-title">{{subject.subject_id}}</h4>
+           <p class="card-text">{{subject.subject_name}}</p>
+           <p class="card-text"><small class="text-muted">{{subject.faculty_name}}</small></p>
+         </div>
+       </div>
+   </a>
+     {% endfor %}
+   </div>
+ </div>
+ <hr />
+ </div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/multiselect.js')}}"></script>
+{% endblock %}

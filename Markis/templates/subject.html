@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="home-information file-information">
+  <div class="title">
+    <h2>{{ subjectDataSet.subject_id }} - {{ subjectDataSet.subject_name }} </h2>
+ </div>
+ {% include 'includes/_breadcrumb.html' %}
+ {% include 'includes/_searchbar.html' %}
+</div>
+
+<div class="content lower">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+
+      </tr>
+    </thead>
+      {% for folder in folders %}
+      <tr onclick="location.href = '/subject/{{ subjectDataSet.subject_id }}/{{ folder.name }}';" >
+        <td>
+            {% if folder.hasContent %}
+            <i class="material-icons" id="icon">folder</i>
+            {% else %}
+            <i class="material-icons" id="icon">folder_open</i>
+            {% endif %}
+            {{ folder.name }}</td>
+      </tr>
+      {% endfor %}
+
+  </table>
+</div>
+<hr />
+{% endblock %}
