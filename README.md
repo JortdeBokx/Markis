@@ -21,7 +21,7 @@ You need to define the following variables in `/instance/config.py` in order to 
 * Add the following: `DEBUG = True` & `SQLALCHEMY_ECHO = True` (to overwrite main configuration)
 * Add your own url, username and password for a crowd REST server, you can ask the project owner for a hosted crowd server
 
-###folder structure
+### folder structure
 The files and folders are divided as follows:
 
 | File/Folder         | description|
